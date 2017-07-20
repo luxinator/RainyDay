@@ -3,9 +3,10 @@ pages:
   - Home: index.md
   - Tutorial:
       - 'Start' : 'tutorial_start.md'
+      - 'Spark' : 'spark01.md'
   - Linux: linux.md
   - About: about.md
 
 repo_url : https://github.com/luxinator/RainyDay
 
-site_description : Apache Spark NiFi HDFS Solr Tutorial HowTo
+site_description : Apache Spark NiFi HDFS Solr Tutorial HowTo IntelliJ Scala
