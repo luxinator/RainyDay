@@ -1,0 +1,14 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "Goal of this project\n\n\nIn this project we will build historical wheater page called \nRainyDay\n. We will built this from opensource software using everyday hardware.\nFor that to work we need to take the following steps:\n\n\n\n\nGather the data\n\n\nTransform it to an easy to handle format (JSON)\n\n\nIndex it\n\n\nDisclose it as an API\n\n\nBuild a web/app to show the data/query\n\n\n\n\nFor this we are going to use the following software packages:\n\n\n\n\nApache NiFi (gather)\n\n\nApache HDFS (save)\n\n\nApache Spark (transform)\n\n\nApache Solr (index)\n\n\nAngular (visualize)\n\n\n\n\nPlease Read and do in the following order:\n-  Cluster\n-  HDFS\n-  Spark\n-  Nifi", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#goal-of-this-project", 
+            "text": "In this project we will build historical wheater page called  RainyDay . We will built this from opensource software using everyday hardware.\nFor that to work we need to take the following steps:   Gather the data  Transform it to an easy to handle format (JSON)  Index it  Disclose it as an API  Build a web/app to show the data/query   For this we are going to use the following software packages:   Apache NiFi (gather)  Apache HDFS (save)  Apache Spark (transform)  Apache Solr (index)  Angular (visualize)   Please Read and do in the following order:\n-  Cluster\n-  HDFS\n-  Spark\n-  Nifi", 
+            "title": "Goal of this project"
+        }
+    ]
+}
