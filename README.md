@@ -22,7 +22,7 @@ For this we are going to use the following software packages:
 
 Please Read and do in the following order:
 
-- Cluster
+- [Cluster](/ClusterSetup.html)
 - HDFS
 - Spark
 - Nifi
