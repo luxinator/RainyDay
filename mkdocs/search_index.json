@@ -2,13 +2,118 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Goal of this project\n\n\nIn this project we will build historical wheater page called \nRainyDay\n. We will built this from opensource software using everyday hardware.\nFor that to work we need to take the following steps:\n\n\n\n\nGather the data\n\n\nTransform it to an easy to handle format (JSON)\n\n\nIndex it\n\n\nDisclose it as an API\n\n\nBuild a web/app to show the data/query\n\n\n\n\nFor this we are going to use the following software packages:\n\n\n\n\nApache NiFi (gather)\n\n\nApache HDFS (save)\n\n\nApache Spark (transform)\n\n\nApache Solr (index)\n\n\nAngular (visualize)\n\n\n\n\nPlease Read and do in the following order:\n-  Cluster\n-  HDFS\n-  Spark\n-  Nifi", 
+            "text": "RainyDay: A NiFi/Spark/Solr tutorial (v0.0.1)\n\n\nGoal of this project\n\n\nThe goal is to get you started with modern big data tools. \nMany tutorials online only show one aspect of working with big data, our goal is to show how tools work together.\n\n\nIn this project we will build a weather page called \nRainyDay\n, it will show the precipitation per day of a location of your choosing.  The data set we will use is freely available climate data from the \nEuropean Climate Assessment \n Dataset\n (\nEDAC\n)\n\n\nThe steps the data has to go through are roughly as follows:\n\n\n\n\nGather\n\n\nTransform it to an easy to handle format (JSON)\n\n\nIndex it\n\n\nDisclose it as an API\n\n\nBuild a web/app to show the data/query\n\n\n\n\nFor this we are going to use the following software packages:\n\n\n\n\nApache NiFi (gather)\n\n\nApache HDFS (save)\n\n\nApache Spark (transform)\n\n\nApache Solr (index)\n\n\nDashBoard \n\n\n\n\nThere are two ways to do this tutorial:\n\n\n\n\nRunning everything on a a single-machine \n\n\nRunning a cluster setup\n\n\n\n\nThe single-machine setup is called a single-node cluster in the Apache documentation, we will start with a single-node.\n\n\nHead over to the \nTutorial\n to get started.", 
             "title": "Home"
         }, 
         {
+            "location": "/#rainyday-a-nifisparksolr-tutorial-v001", 
+            "text": "", 
+            "title": "RainyDay: A NiFi/Spark/Solr tutorial (v0.0.1)"
+        }, 
+        {
             "location": "/#goal-of-this-project", 
-            "text": "In this project we will build historical wheater page called  RainyDay . We will built this from opensource software using everyday hardware.\nFor that to work we need to take the following steps:   Gather the data  Transform it to an easy to handle format (JSON)  Index it  Disclose it as an API  Build a web/app to show the data/query   For this we are going to use the following software packages:   Apache NiFi (gather)  Apache HDFS (save)  Apache Spark (transform)  Apache Solr (index)  Angular (visualize)   Please Read and do in the following order:\n-  Cluster\n-  HDFS\n-  Spark\n-  Nifi", 
+            "text": "The goal is to get you started with modern big data tools. \nMany tutorials online only show one aspect of working with big data, our goal is to show how tools work together.  In this project we will build a weather page called  RainyDay , it will show the precipitation per day of a location of your choosing.  The data set we will use is freely available climate data from the  European Climate Assessment   Dataset  ( EDAC )  The steps the data has to go through are roughly as follows:   Gather  Transform it to an easy to handle format (JSON)  Index it  Disclose it as an API  Build a web/app to show the data/query   For this we are going to use the following software packages:   Apache NiFi (gather)  Apache HDFS (save)  Apache Spark (transform)  Apache Solr (index)  DashBoard    There are two ways to do this tutorial:   Running everything on a a single-machine   Running a cluster setup   The single-machine setup is called a single-node cluster in the Apache documentation, we will start with a single-node.  Head over to the  Tutorial  to get started.", 
             "title": "Goal of this project"
+        }, 
+        {
+            "location": "/tutorial_start/", 
+            "text": "", 
+            "title": "Start"
+        }, 
+        {
+            "location": "/spark01/", 
+            "text": "Spark\n\n\nSpark jobs can be written in many languages, probably the most used is  \nScala\n. It is a general purpose programming language with many functional capabilities. \nFor beginners it is probably easiest to use an IDE while building scala/spark applications. We will go through setting up the IDE. We assume that you have installed \nIntelliJ\n from Jetbrains and that the scala plugin is installed like explained \nhere\n.\n\n\nSetup IntelliJ IDEA\n\n\nWe will go through the steps needed to setup a project that uses the locally installed spark installation, by doing this we know that the project will run with our Spark install.\n\n\n\n\nStart IntelliJ.\n\n\nSelect New Project, either from the initial boot screen or through: File -\n New -\n Project...\n\n\nSelect Scala -\n SBT.\n\n\nSelect a project folder and give the project a name (RainyDay). IMPORTANT: make sure the scala version is the same as the spark scala version, see bellow on how to find that out.\n\n\nSelect the project in the left pane.\n\n\nRight-click on the project and select Module-Settings or press F4.\n\n\nGo to Global Libraries.\n\n\nPress the [+] sign.\n\n\nSelect Java.\n\n\nGo to the directory where you unpacked Spark.\n\n\nSelect the \njars\n folder .\n\n\nSelect all the jar files in the folder. (use the shift key)\n\n\nPress OK\n\n\nSelect both modules\n\n\nPress Ok\n\n\nPress Ok\n\n\nWait for the indexing to complete\n\n\n\n\nTest Class\n\n\nIn the project pane go to src -\n main -\n scala. Right-click on the scala folder and select new -\n Scala Class\nName the class TestClass, replace the content with the code bellow. Note that we use \nobject\n instead of \nclass\n. \n\n\nimport org.apache.spark.{SparkConf, SparkContext}\n\nobject TestScala {\n  def main(args: Array[String]): Unit = {\n    val conf = new SparkConf()\n    conf.setAppName(\nSparkTest\n)\n    conf.setMaster(\nlocal[2]\n)\n    val sc = new SparkContext(conf)\n    println(sc)\n  }\n}\n\n\n\n\nGo through code line by line.\n\n\nRun\n\n\n*Figuring out the Scala version of Spark\n\n\nGo to the directory where you unpacked spark (\ncd $SPARK_HOME\n). Go to the \njars\n folder, look for a file named: \nscala-compiler-2.*.*.jar\n, where the stars are the version numbers. Under linux you can do this by running \nls | grep scala-compiler\n. \nIn your IntelliJ project select the same version as you found in the \njars\n folder. So if you found \nscala-compiler-2.11.8.jar\n in the jars folder, select 2.11.8 in the new project wizard. The scala version of spark might not be in the list, continue reading to find out how to install a compiler.\n\n\nInstalling scala SDK's\n\n\nYou can install new scala SDK as follows:\n\n\n\n\nMake a new scala SBT project.\n\n\nUse the defaults in the wizard.\n\n\nSelect the project in left pane.\n\n\nRight-click and select module-setting, or press F4.\n\n\nUnder Platform Settings select Global Libraries.\n\n\nPress the [+] sign.\n\n\nSelect Scala SDK\n\n\nIn the popup select the version you want to download.\n\n\nPress OK and restart the Editor.\n\n\n\n\nIf everything worked out you can now select the scala version you want in the new project wizard.\n\n\nNote: In theory the last digit of a semantic version do not have to match, but better be safe than sorry. However the middle and first digits \nmust\n match.", 
+            "title": "Spark"
+        }, 
+        {
+            "location": "/spark01/#spark", 
+            "text": "Spark jobs can be written in many languages, probably the most used is   Scala . It is a general purpose programming language with many functional capabilities. \nFor beginners it is probably easiest to use an IDE while building scala/spark applications. We will go through setting up the IDE. We assume that you have installed  IntelliJ  from Jetbrains and that the scala plugin is installed like explained  here .", 
+            "title": "Spark"
+        }, 
+        {
+            "location": "/spark01/#setup-intellij-idea", 
+            "text": "We will go through the steps needed to setup a project that uses the locally installed spark installation, by doing this we know that the project will run with our Spark install.   Start IntelliJ.  Select New Project, either from the initial boot screen or through: File -  New -  Project...  Select Scala -  SBT.  Select a project folder and give the project a name (RainyDay). IMPORTANT: make sure the scala version is the same as the spark scala version, see bellow on how to find that out.  Select the project in the left pane.  Right-click on the project and select Module-Settings or press F4.  Go to Global Libraries.  Press the [+] sign.  Select Java.  Go to the directory where you unpacked Spark.  Select the  jars  folder .  Select all the jar files in the folder. (use the shift key)  Press OK  Select both modules  Press Ok  Press Ok  Wait for the indexing to complete", 
+            "title": "Setup IntelliJ IDEA"
+        }, 
+        {
+            "location": "/spark01/#test-class", 
+            "text": "In the project pane go to src -  main -  scala. Right-click on the scala folder and select new -  Scala Class\nName the class TestClass, replace the content with the code bellow. Note that we use  object  instead of  class .   import org.apache.spark.{SparkConf, SparkContext}\n\nobject TestScala {\n  def main(args: Array[String]): Unit = {\n    val conf = new SparkConf()\n    conf.setAppName( SparkTest )\n    conf.setMaster( local[2] )\n    val sc = new SparkContext(conf)\n    println(sc)\n  }\n}  Go through code line by line.", 
+            "title": "Test Class"
+        }, 
+        {
+            "location": "/spark01/#run", 
+            "text": "", 
+            "title": "Run"
+        }, 
+        {
+            "location": "/spark01/#figuring-out-the-scala-version-of-spark", 
+            "text": "Go to the directory where you unpacked spark ( cd $SPARK_HOME ). Go to the  jars  folder, look for a file named:  scala-compiler-2.*.*.jar , where the stars are the version numbers. Under linux you can do this by running  ls | grep scala-compiler . \nIn your IntelliJ project select the same version as you found in the  jars  folder. So if you found  scala-compiler-2.11.8.jar  in the jars folder, select 2.11.8 in the new project wizard. The scala version of spark might not be in the list, continue reading to find out how to install a compiler.", 
+            "title": "*Figuring out the Scala version of Spark"
+        }, 
+        {
+            "location": "/spark01/#installing-scala-sdks", 
+            "text": "You can install new scala SDK as follows:   Make a new scala SBT project.  Use the defaults in the wizard.  Select the project in left pane.  Right-click and select module-setting, or press F4.  Under Platform Settings select Global Libraries.  Press the [+] sign.  Select Scala SDK  In the popup select the version you want to download.  Press OK and restart the Editor.   If everything worked out you can now select the scala version you want in the new project wizard.  Note: In theory the last digit of a semantic version do not have to match, but better be safe than sorry. However the middle and first digits  must  match.", 
+            "title": "Installing scala SDK's"
+        }, 
+        {
+            "location": "/nifi/", 
+            "text": "", 
+            "title": "NiFi"
+        }, 
+        {
+            "location": "/HDFS/", 
+            "text": "", 
+            "title": "HDFS"
+        }, 
+        {
+            "location": "/solr/", 
+            "text": "", 
+            "title": "Solr"
+        }, 
+        {
+            "location": "/scala/", 
+            "text": "Scala - Data Proccessing\n\n\nData Structure EDAC\n\n\nTake a look at the data we downloaded from the EDAC. It contains ASCII text files. \n\n\nelements.txt\nmetadata.txt\nRR_SOUID000000.txt\nRR_SOUID000001.txt\nRR_SOUID000002.txt\n.\n.\n.\n\n\n\n\n\nTry to understand what the files mean and how they are structured. \nThese are fixed width ASCII files, a common but old data format. A quick explination about these files can be found \nhere\n\n\nWe are going to use scala to transform the ASCII data to JSON format, the JSON will then be pushed to solr. Every line in \nsources.txt\n will be transformed to the following:\n\n\n{\n    \nsourceId\n          : [SOUID],\n    \nname\n              : [SOUNAME],\n    // Country code (ISO3116 country)\n    \ncountryCode\n       : [CN], codes)\n    // Degrees:minutes:seconds (+: North, -: South)\n    \nlatitude\n          : [LAT], \n    // Degrees:minutes:seconds (+: East, -: West)\n    \nlongitude\n         : [LON], \n    // Station elevation in meters\n    \nheight\n            : [HGHT],\n    \nelementId\n         : [ELEI],\n    \nbeginDate\n         : [BEGIN],\n    \neindDate\n          : [END],\n    \nparticipantId\n     : [PARID],\n    \nparticipantName\n   : [PARNAME]\n}\n\n\n\n\nWhere the values in square brackets will be replaced by the values from the ASCII files.\n\n\nEvery line from every \nRR_0000000.txt\n file will be placed in the following JSON:\n\n\n{\n    \nstationId\n     : [STAID],\n    \nsourceId\n      : [SOUID],\n    \ndate\n          : [DATE],\n    //precipitation amount in 0.1 mm\n    \nprecipitation\n : [RR],\n    // Will be filled one of the following strings: Valid, suspect, missing\n    \nquality\n       : [Q_RR]\n}\n\n\n\n\nCode", 
+            "title": "Scala"
+        }, 
+        {
+            "location": "/scala/#scala-data-proccessing", 
+            "text": "", 
+            "title": "Scala - Data Proccessing"
+        }, 
+        {
+            "location": "/scala/#data-structure-edac", 
+            "text": "Take a look at the data we downloaded from the EDAC. It contains ASCII text files.   elements.txt\nmetadata.txt\nRR_SOUID000000.txt\nRR_SOUID000001.txt\nRR_SOUID000002.txt\n.\n.\n.  Try to understand what the files mean and how they are structured. \nThese are fixed width ASCII files, a common but old data format. A quick explination about these files can be found  here  We are going to use scala to transform the ASCII data to JSON format, the JSON will then be pushed to solr. Every line in  sources.txt  will be transformed to the following:  {\n     sourceId           : [SOUID],\n     name               : [SOUNAME],\n    // Country code (ISO3116 country)\n     countryCode        : [CN], codes)\n    // Degrees:minutes:seconds (+: North, -: South)\n     latitude           : [LAT], \n    // Degrees:minutes:seconds (+: East, -: West)\n     longitude          : [LON], \n    // Station elevation in meters\n     height             : [HGHT],\n     elementId          : [ELEI],\n     beginDate          : [BEGIN],\n     eindDate           : [END],\n     participantId      : [PARID],\n     participantName    : [PARNAME]\n}  Where the values in square brackets will be replaced by the values from the ASCII files.  Every line from every  RR_0000000.txt  file will be placed in the following JSON:  {\n     stationId      : [STAID],\n     sourceId       : [SOUID],\n     date           : [DATE],\n    //precipitation amount in 0.1 mm\n     precipitation  : [RR],\n    // Will be filled one of the following strings: Valid, suspect, missing\n     quality        : [Q_RR]\n}", 
+            "title": "Data Structure EDAC"
+        }, 
+        {
+            "location": "/scala/#code", 
+            "text": "", 
+            "title": "Code"
+        }, 
+        {
+            "location": "/linux/", 
+            "text": "Linux", 
+            "title": "Linux"
+        }, 
+        {
+            "location": "/linux/#linux", 
+            "text": "", 
+            "title": "Linux"
+        }, 
+        {
+            "location": "/about/", 
+            "text": "Author\n\n\nLvO\n\n\nDocs\n\n\nThis site was built using MkDocs and hosted on \ngithub pages", 
+            "title": "About"
+        }, 
+        {
+            "location": "/about/#author", 
+            "text": "LvO", 
+            "title": "Author"
+        }, 
+        {
+            "location": "/about/#docs", 
+            "text": "This site was built using MkDocs and hosted on  github pages", 
+            "title": "Docs"
         }
     ]
 }

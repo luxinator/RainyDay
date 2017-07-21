@@ -4,7 +4,63 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-07-20</lastmod>
+     <lastmod>2017-07-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>/tutorial_start/</loc>
+     <lastmod>2017-07-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/spark01/</loc>
+     <lastmod>2017-07-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/nifi/</loc>
+     <lastmod>2017-07-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/HDFS/</loc>
+     <lastmod>2017-07-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/solr/</loc>
+     <lastmod>2017-07-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>/scala/</loc>
+     <lastmod>2017-07-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+    <url>
+     <loc>/linux/</loc>
+     <lastmod>2017-07-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>/about/</loc>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
