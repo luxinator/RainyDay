@@ -5,7 +5,7 @@
 The goal is to get you started with modern big data tools. 
 Many tutorials online only show one aspect of working with big data, our goal is to show how tools work together.
 
-In this project we will build a wheater page called *RainyDay*, it will show the precipitation per day of a location of your choosing.  The data set we will use is freely available climate data from the *European Climate Assessment & Dataset* ([EDAC](http://www.ecad.eu/))
+In this project we will build a weather page called *RainyDay*, it will show the precipitation per day of a location of your choosing.  The data set we will use is freely available climate data from the *European Climate Assessment & Dataset* ([EDAC](http://www.ecad.eu/))
 
 The steps the data has to go through are roughly as follows:
 
@@ -22,5 +22,13 @@ For this we are going to use the following software packages:
 - Apache Spark (transform)
 - Apache Solr (index)
 - DashBoard 
+
+There are two ways to do this tutorial:
+
+- Running everything on a a single-machine 
+- Running a cluster setup
+
+The single-machine setup is called a single-node cluster in the Apache documentation, we will start with a single-node.
+
 
 Head over to the [Tutorial](tutorial_start.md) to get started.

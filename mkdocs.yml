@@ -4,6 +4,10 @@ pages:
   - Tutorial:
       - 'Start' : 'tutorial_start.md'
       - 'Spark' : 'spark01.md'
+      - 'NiFi' : nifi.md
+      - 'HDFS' : HDFS.md
+      - 'Solr' : solr.md
+      - 'Scala' : scala.md
   - Linux: linux.md
   - About: about.md
 

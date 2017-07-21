@@ -1,0 +1,9 @@
+{
+	"stationId"		: [STAID],
+	"sourceId" 		: [SOUID],
+	"date"			: [DATE],
+	//precipitation amount in 0.1 mm
+	"precipitation"	: [RR],
+	// Will be filled one of the following strings: Valid, suspect, missing
+	"quality"		: [Q_RR]
+}

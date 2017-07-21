@@ -1,0 +1,13 @@
+{
+	"sourceId" 			: [SOUID],
+	"name" 				: [SOUNAME],
+	"countryCode" 		: [CN],
+	"latitude" 			: [LAT],
+	"longitude"			: [LON],
+	"height"			: [HGHT],
+	"elementId"			: [ELEI],
+	"beginDate"			: [BEGIN],
+	"eindDate" 			: [END],
+	"participantId"		: [PARID],
+	"participantName"	: [PARNAME]
+}

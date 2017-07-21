@@ -1,0 +1,13 @@
+{
+	"sourceId" 			: [SOUID],
+	"name" 				: [SOUNAME],
+	"countryCode" 		: [CN],  // Country code (ISO3116 country codes)
+	"latitude" 			: [LAT], // Degrees:minutes:seconds (+: North, -: South)
+	"longitude"			: [LON], // Degrees:minutes:seconds (+: East, -: West)
+	"height"			: [HGHT],// Station elevation in meters
+	"elementId"			: [ELEI],
+	"beginDate"			: [BEGIN],
+	"eindDate" 			: [END],
+	"participantId"		: [PARID],
+	"participantName"	: [PARNAME]
+}
