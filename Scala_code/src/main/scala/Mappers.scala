@@ -1,5 +1,5 @@
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.{Dataset, SparkSession}
 
 
 case class PrecipSource(sourceId: Int,
@@ -26,13 +26,13 @@ class Mappers() {
 
   /**
     * Maps the textfile containing the sources.txt file in the ECAD data folder
-    * to a PrecipSource object
+    * to a PrecipSource DF
     *
     * @param spark          sparkSession
     * @param sourceFilePath path to file
     * @return DataFram based on PrecipSource
     */
-  def genSourceDF(spark: SparkSession, sourceFilePath: String): DataFrame = {
+  def genSourceDF(spark: SparkSession, sourceFilePath: String): Dataset[PrecipSource] = {
 
     import spark.implicits._
 
@@ -40,8 +40,9 @@ class Mappers() {
 
     val header = spark.sparkContext.parallelize(sourceFile.take(25))
     sourceFile = sourceFile.subtract(header)
+    header.unpersist()
 
-    val sourceDF = sourceFile
+    var sourceDF: Dataset[PrecipSource] = sourceFile
       .map(s => s.split(",")
         .map(_.trim()))
       .map(fields => PrecipSource(
@@ -56,17 +57,41 @@ class Mappers() {
         fields(8),
         fields(9).toInt,
         fields(10)))
-      .toDF()
-    sourceDF.show(false)
+      .toDS()
+    //    sourceDF.show(false)
 
     sourceDF
   }
 
+  /**
+    * Maps a precipitation textfile to a Precipication DF
+    *
+    * @param spark
+    * @param sourceFilPath
+    */
+  def precipicationDF(spark: SparkSession, sourceFilPath: String): Dataset[Precipication] = {
+    import spark.implicits._
 
-  def precipicationDF(spark: SparkSession, sourceFilPath: String): Unit = {
+    var sourceFile: RDD[String] = spark.sparkContext.textFile(sourceFilPath)
 
-    val file: RDD[String] = spark.sparkContext.textFile(sourceFilPath)
-    //    val header = spark.sparkCo
+    val header = spark.sparkContext.parallelize(sourceFile.take(20))
+    sourceFile = sourceFile.subtract(header)
+    header.unpersist()
+
+    var precipitionDF: Dataset[Precipication] = sourceFile
+      .map(s => s.split(",")
+        .map(_.trim()))
+      .map(fields => Precipication(
+        stationId = fields(0).toInt,
+        sourceId = fields(1).toInt,
+        date = fields(2),
+        amount = fields(3).toInt,
+        quality = fields(4).toInt
+      ))
+      .toDS()
+
+    precipitionDF.show(false)
+    precipitionDF
   }
 
 }

@@ -4,7 +4,7 @@ import org.apache.spark.sql.SparkSession
 object Job {
 
   val AppName = "ECAD_JSON_Converter"
-  val sparkMaster = "local[2]"
+  val sparkMaster = "local[3]"
   //  val sparkMaster = "spark://node0.local:7077"
   val HDFSDataDir = "hdfs://node0.local:9000/ECAD_Data/"
   val HDFSNameNode = "hdfs://node0.local:9000"
@@ -23,6 +23,6 @@ object Job {
 
     val mapper = new Mappers()
     val sourceDF = mapper.genSourceDF(spark, HDFSDataDir + "sources.txt")
-
+    val precipDF = mapper.precipicationDF(spark, HDFSDataDir + "RR_SOUID100014.txt")
   }
 }
