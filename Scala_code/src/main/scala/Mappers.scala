@@ -67,31 +67,24 @@ class Mappers() {
     * Maps a precipitation textfile to a Precipication DF
     *
     * @param spark
-    * @param sourceFilPath
+    * @param sourceFileContent
     */
-  def precipicationDF(spark: SparkSession, sourceFilPath: String): Dataset[Precipication] = {
-    import spark.implicits._
+  def precipicationDF(spark: SparkSession, sourceFileContent: RDD[(String, String)]): Unit = {
 
-    var sourceFile: RDD[String] = spark.sparkContext.textFile(sourceFilPath)
+    val sources = sourceFileContent.map({ case (path, content) =>
+      content.split("\n").drop(20)
+        .map(s => s.split(",").map(_.trim()))
+        .map(fields => Precipication(
+          stationId = fields(0).toInt,
+          sourceId = fields(1).toInt,
+          date = fields(2),
+          amount = fields(3).toInt,
+          quality = fields(4).toInt
+        ))
+    })
+    sources.count()
+    //    spark.createDataset(precipitionDF)
 
-    val header = spark.sparkContext.parallelize(sourceFile.take(20))
-    sourceFile = sourceFile.subtract(header)
-    header.unpersist()
-
-    var precipitionDF: Dataset[Precipication] = sourceFile
-      .map(s => s.split(",")
-        .map(_.trim()))
-      .map(fields => Precipication(
-        stationId = fields(0).toInt,
-        sourceId = fields(1).toInt,
-        date = fields(2),
-        amount = fields(3).toInt,
-        quality = fields(4).toInt
-      ))
-      .toDS()
-
-    precipitionDF.show(false)
-    precipitionDF
   }
 
 }
